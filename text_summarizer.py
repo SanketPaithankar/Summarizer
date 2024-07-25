@@ -10,9 +10,6 @@ model = AutoModelForCausalLM.from_pretrained(
     device_map="auto"  # Adjust to use available device
 )
 
-if tokenizer.pad_token is None:
-    tokenizer.pad_token = tokenizer.eos_token
-
 def summarize_text(text):
     prompt = "Summarize the following text:\n\n" + text
     messages = [
