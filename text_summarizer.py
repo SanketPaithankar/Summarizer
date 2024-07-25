@@ -2,12 +2,12 @@ import click
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
-# Load the tokenizer and model
+
 tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2-0.5B")
 model = AutoModelForCausalLM.from_pretrained(
     "Qwen/Qwen2-0.5B-Instruct",
     torch_dtype="auto",
-    device_map="auto"  # Adjust to use available device
+    device_map="auto"  
 )
 
 def summarize_text(text):
@@ -43,11 +43,7 @@ def save_summary(text, summary, filename):
 @click.option('-t', '--text-file', type=click.Path(exists=True), help='Path to the text file to summarize')
 @click.argument('text', required=False)
 def main(text_file, text):
-    """
-    Summarize text using Qwen2 0.5B model.
-    
-    You can provide the text to summarize either via a text file or directly as an argument.
-    """
+   
     if text_file:
         with open(text_file, 'r') as file:
             text = file.read()
